@@ -10,6 +10,8 @@ urlpatterns = [
     path('', views.home_page, name='home'),
     path('store/', include('store.urls')),
     path('cart/', include('carts.urls')),
+    path('accounts/', include('accounts.urls')),
+    path('orders/', include('orders.urls')),
 
 
     re_path(r'^media/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT}),
