@@ -1,7 +1,11 @@
 import os
 from environs import Env
 from pathlib import Path
+<<<<<<< HEAD
 # from decouple import config
+=======
+from decouple import config
+>>>>>>> 4a59040f0fedd990a44ba9a59664ffd76bea61c8
 
 env = Env()
 env.read_env()
@@ -12,10 +16,17 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
+<<<<<<< HEAD
 SECRET_KEY = env.str('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env.bool('DEBUG')
+=======
+SECRET_KEY = config('SECRET_KEY')
+
+# SECURITY WARNING: don't run with debug turned on in production!
+DEBUG = config('DEBUG', cast=bool, default=True)
+>>>>>>> 4a59040f0fedd990a44ba9a59664ffd76bea61c8
 
 ALLOWED_HOSTS = ['*']
 
@@ -36,7 +47,10 @@ INSTALLED_APPS = [
     'store',
     'carts',
     'orders',
+<<<<<<< HEAD
     # 'admin_honeypot',
+=======
+>>>>>>> 4a59040f0fedd990a44ba9a59664ffd76bea61c8
 ]
 
 MIDDLEWARE = [
@@ -148,9 +162,17 @@ MESSAGE_TAGS = {
 
 PASSWORD_RESET_TIMEOUT=30
 
+<<<<<<< HEAD
 EMAIL_HOST = env.str('EMAIL_HOST')
 EMAIL_PORT = env.int('EMAIL_PORT')
 EMAIL_HOST_USER = env.str('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = env.str('EMAIL_HOST_PASSWORD')
 EMAIL_USE_TLS = env.bool('EMAIL_USE_TLS')
+=======
+EMAIL_HOST = config('EMAIL_HOST')
+EMAIL_PORT = config('EMAIL_PORT', cast=int)
+EMAIL_HOST_USER = config('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
+EMAIL_USE_TLS = config('EMAIL_USE_TLS', cast=bool)
+>>>>>>> 4a59040f0fedd990a44ba9a59664ffd76bea61c8
 
