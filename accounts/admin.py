@@ -1,8 +1,10 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
-from .models import Account
+from .models import Account, UserProfile
+from django.utils.html import format_html
 
 
+@admin.register(Account)
 class AccountAdmin(UserAdmin):
     list_display = ['email', 'first_name', 'last_name', 'username', 'last_login', 'is_active', 'date_joined']
     list_display_links = ['email', 'first_name', 'last_name']
@@ -13,4 +15,12 @@ class AccountAdmin(UserAdmin):
     list_filter = []
     fieldsets = []
 
-admin.site.register(Account, AccountAdmin)
+
+@admin.register(UserProfile)
+class UserProfileAdmin(admin.ModelAdmin):
+    def thumbnail(self, object):
+        return format_html('<img srs="{}" width="30" style="border-radius:50%;">'.format(object.profile_picture.url))
+    thumbnail.short_description = 'Profile Picture'
+    thumbnail.allow_tags = True
+    list_display = ['thumbnail', 'user', 'city', 'state', 'country']
+
